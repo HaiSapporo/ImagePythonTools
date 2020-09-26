@@ -1,0 +1,34 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[15]:
+
+
+from PIL import Image
+
+
+# In[19]:
+
+
+import os
+
+
+# In[30]:
+
+
+#fix size with 
+basewidth = 2048
+#open file in folders image
+source_folder ='input/'
+#ouput folder
+source_output ='output/'
+#read all folder input
+directory = os.listdir(source_folder)
+#loop all item in folders 
+for i in directory:
+    img = Image.open(source_folder + i)
+    wpercent = (basewidth/float(img.size[0]))
+    hsize = int((float(img.size[1])*float(wpercent)))
+    img = img.resize((basewidth,hsize), Image.ANTIALIAS)
+    img.save(source_output + i, quality = 80)  
+
